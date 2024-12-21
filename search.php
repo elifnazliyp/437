@@ -43,7 +43,7 @@ $result = mysqli_stmt_get_result($stmt);
                 <a href="index.php">World News</a>
             </div>
             <!-- Search bar -->
-            <form class="search-bar" action="search.php" method="GET">
+            <form class="search-bar"  method="GET">
                 <input type="text" id="searchInput" name="q" placeholder="Search news..." value="<?php echo htmlspecialchars($search_query); ?>">
                 <button type="submit">Search</button>
             </form>
@@ -99,6 +99,7 @@ $result = mysqli_stmt_get_result($stmt);
         </div>
 
         <!-- Vulnerable DOM-based XSS Section -->
+         
         <div id="vulnSection">
             <h2>Search Query Details</h2>
             <div id="searchQueryDisplay"></div>
@@ -107,6 +108,8 @@ $result = mysqli_stmt_get_result($stmt);
 
     <!-- VULNERABLE: JavaScript for DOM-based XSS -->
     <script>
+
+
         // DOM-based XSS Vulnerability
         document.addEventListener('DOMContentLoaded', function() {
             // Get the search input from the URL parameter
@@ -120,15 +123,16 @@ $result = mysqli_stmt_get_result($stmt);
                 // Vulnerable line: directly inserting HTML
                 searchQueryDisplay.innerHTML = 'You searched for: ' + searchQuery;
             }
-        });
-
-        // Additional trick to demonstrate vulnerability
-        document.addEventListener('DOMContentLoaded', function() {
+                // Additional logging functionality
             const searchInput = document.getElementById('searchInput');
             searchInput.addEventListener('input', function() {
                 console.log('Current search input: ' + this.value);
             });
         });
+        
+
+
+    
     </script>
 
     <!-- Footer -->
